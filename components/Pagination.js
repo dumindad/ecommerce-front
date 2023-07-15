@@ -59,7 +59,7 @@ function Pagination({ products, totalProducts }) {
                     <Link key={page} href={`/products?page=${page}&limit=${limit}&limit_titles=${dataPerPage}`}
                     // style={page === currentPage ? linkStyle : ""}
                     // style={`${page == currentPage ? {linkStyle} : "" }`}
-                    style={page === currentPage ? {color:'#BF4F74'} : ""}
+                    // style={page === currentPage ? {color:'#BF4F74'} : ""}
                     > {page} 
                     </Link>,
                     )
