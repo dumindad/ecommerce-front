@@ -69,7 +69,8 @@ export default function Header() {
     <StyledHeader>
       <Center>
         <Wrapper>
-          <Logo href={'/'}>Edmond&apos;s</Logo>
+          {/* <Logo href={'/'}>Edmond&apos;s</Logo> */}
+          <Logo href={'/'}>Edmonds</Logo>
           <StyledNav mobileNavActive={mobileNavActive}>
             <NavLink href={'/'}>Home</NavLink>
             {/* <NavLink href={'/products'}>All products</NavLink> */}
