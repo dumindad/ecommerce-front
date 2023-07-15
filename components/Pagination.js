@@ -44,7 +44,7 @@ function Pagination({ products, totalProducts }) {
 
     return (
         <div>
-            <NavUnlisted>
+            
 
                 {
                     currentPage - 1 >= 1 && (
@@ -72,20 +72,11 @@ function Pagination({ products, totalProducts }) {
                         </>
                     )
                 }
-            </NavUnlisted>
+            
         </div>
     )
 
 }
-const NavUnlisted = styled.ul`
-  text-decoration: none;
-  display:"flex", gap: "2rem",
-  justifyContent:"center"
-`;
-const linkStyle = {
-   color: "#BF4F74",
-//    fontweight: 'bold',
-     
-};
+
 
 export default Pagination
