@@ -6,6 +6,8 @@ import { useRouter } from 'next/router'
 import styled from "styled-components";
 
 
+
+
 function Pagination({ products, totalProducts }) {
     const [activeLink, setActiveLink] = useState()
     const searchParams = useSearchParams()
@@ -40,43 +42,68 @@ function Pagination({ products, totalProducts }) {
     }
     let nextPage = currentPage + 1
     let privesPage = currentPage - 1
-    // console.log(pageNumbers)
 
     return (
-        <div>
-            
+        <Wrapper>
 
-                {
-                    currentPage - 1 >= 1 && (
-                        <>
-                            <Link href={`/products?page=${privesPage}&limit=${limit}&limit_titles=${dataPerPage}`}>{'<<'} </Link>
-                        </>
-                    )
-                }
-                {
-                    pageNumbers.map((page) =>
-                   
-                    <Link key={page} href={`/products?page=${page}&limit=${limit}&limit_titles=${dataPerPage}`}
-                    // style={page === currentPage ? linkStyle : ""}
-                    // style={`${page == currentPage ? {linkStyle} : "" }`}
-                    // style={page === currentPage ? {color:'#BF4F74'} : ""}
-                    > {page} 
-                    </Link>,
-                    )
-                }
 
-                {
-                    currentPage + 1 <= totalPages && (
-                        <>
-                            <Link href={`/products?page=${nextPage}&limit=${limit}&limit_titles=${dataPerPage}`}>{'>>'} </Link>
-                        </>
-                    )
-                }
-            
-        </div>
+            {
+                currentPage - 1 >= 1 && (
+                    <>
+                        <NavLink href={`/products?page=${privesPage}&limit=${limit}`}>{'<<'} </NavLink>
+                    </>
+                )
+            }
+            {
+                pageNumbers.map((page) =>(
+                    router.query.page == page ? 
+                        
+                            <NavLink key={page} href={`/products?page=${page}&limit=${limit}`}
+                                style={{ color: '#BF4F74' }}
+                            
+                            > {page}
+                            </NavLink>
+                            :
+                            <NavLink key={page} href={`/products?page=${page}&limit=${limit}`} > 
+                            {page}
+                            </NavLink>
+                        
+                )
+                )
+
+            }
+
+            {
+                currentPage + 1 <= totalPages && (
+                    <>
+                        <NavLink href={`/products?page=${nextPage}&limit=${limit}`}>{'>>'} </NavLink>
+                    </>
+                )
+            }
+
+        </Wrapper>
     )
 
 }
 
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  margin-top: 50px;
+  margin-bottom: 50px;
+`;
+
+const NavLink = styled(Link)`
+  display: block;
+  /* color:#aaa; */
+  color:#000;
+  text-decoration:none;
+  padding: 20px ;
+  @media screen and (min-width: 768px) {
+    padding:20px;
+  }
+`;
 
 export default Pagination

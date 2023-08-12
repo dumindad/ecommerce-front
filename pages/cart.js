@@ -7,6 +7,7 @@ import {CartContext} from "@/components/CartContext";
 import axios from "axios";
 import Table from "@/components/Table";
 import Input from "@/components/Input";
+import Image from "next/image";
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -15,7 +16,7 @@ const ColumnsWrapper = styled.div`
     grid-template-columns: 1.2fr .8fr;
   }
   gap: 40px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
 `;
 
 const Box = styled.div`
@@ -25,13 +26,14 @@ const Box = styled.div`
 `;
 
 const ProductInfoCell = styled.td`
-  padding: 10px 0;
+  /* padding: 5px 0; */
 `;
 
 const ProductImageBox = styled.div`
+
   width: 70px;
   height: 100px;
-  padding: 2px;
+  /* padding: 2px; */
   border: 1px solid rgba(0, 0, 0, 0.1);
   display:flex;
   align-items: center;
@@ -42,7 +44,7 @@ const ProductImageBox = styled.div`
     max-height: 60px;
   }
   @media screen and (min-width: 768px) {
-    padding: 10px;
+    /* padding: 10px; */
     width: 100px;
     height: 100px;
     img{
@@ -155,7 +157,7 @@ export default function CartPage() {
                     <tr key={product._id}>
                       <ProductInfoCell>
                         <ProductImageBox>
-                          <img src={product.images[0]} alt=""/>
+                          <Image style={{objectFit: "contain"}} height={60} width={60} src={product.images[0]?.url} alt={product?.title}/>
                         </ProductImageBox>
                         {product.title}
                       </ProductInfoCell>

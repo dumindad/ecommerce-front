@@ -1,4 +1,4 @@
-import mongoose, {model, Schema, models} from "mongoose";
+import mongoose, { model, Schema, models } from "mongoose";
 
 // const ProductSchema = new Schema({
 //   title: {type:String, required:true},
@@ -141,5 +141,6 @@ const productSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+productSchema.index({ '$**': 'text' });
 
 export const Product = models.Product || model('Product', productSchema);

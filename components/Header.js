@@ -4,14 +4,19 @@ import Center from "@/components/Center";
 import {useContext, useState} from "react";
 import {CartContext} from "@/components/CartContext";
 import BarsIcon from "@/components/icons/Bars";
+import Image from "next/image";
+import BgUrl from '@/public/logo/header_bg.png'
+
 
 const StyledHeader = styled.header`
-  background-color: #222;
+  background-color: #fff;
+  /* background-color: #222; */
 `;
 const Logo = styled(Link)`
-  color:#fff;
+  color:#222;
   text-decoration:none;
   position: relative;
+  top: 0;
   z-index: 3;
 `;
 const Wrapper = styled.div`
@@ -27,12 +32,14 @@ const StyledNav = styled.nav`
   `}
   gap: 15px;
   position: fixed;
-  top: 0;
-  bottom: 0;
+  
+  align-items: center;
+  /* top: 0;
+  bottom: 0; */
   left: 0;
   right: 0;
   padding: 70px 20px 20px;
-  background-color: #222;
+  background-color: #fff;
   @media screen and (min-width: 768px) {
     display: flex;
     position: static;
@@ -53,7 +60,7 @@ const NavButton = styled.button`
   width: 30px;
   height: 30px;
   border:0;
-  color: white;
+  color: #aaa;
   cursor: pointer;
   position: relative;
   z-index: 3;
@@ -65,18 +72,25 @@ const NavButton = styled.button`
 export default function Header() {
   const {cartProducts} = useContext(CartContext);
   const [mobileNavActive,setMobileNavActive] = useState(false);
+  let limit = 10;
+  let page = 1
+  
   return (
     <StyledHeader>
       <Center>
         <Wrapper>
-          {/* <Logo href={'/'}>Edmond&apos;s</Logo> */}
-          <Logo href={'/'}>Edmonds</Logo>
+          
+          <Logo href={'/'}>
+          <Image src='https://res.cloudinary.com/ds5zhj9f2/image/upload/v1689993262/logo/Logo_v2_sfeoci.png' 
+         style={{objectFit: "contain"}} alt="Edmond's Logo" height={60} width={200} />
+          </Logo>
           <StyledNav mobileNavActive={mobileNavActive}>
             <NavLink href={'/'}>Home</NavLink>
-            <NavLink href={'/products'}>All products</NavLink>
-            {/* <NavLink href={`/products?page=${page}&limit=${limit}&limit_titles=${dataPerPage}`}>All products</NavLink> */}
-            <NavLink href={'/categories'}>Categories</NavLink>
-            <NavLink href={'/account'}>Account</NavLink>
+             {/* <NavLink href={'/products'}>All products</NavLink> */}
+             <NavLink href={`/products?page=${page}&limit=${limit}`}>All products</NavLink>
+            {/* <NavLink href={'/categories'}>Categories</NavLink> */}
+            {/* <NavLink href={'/account'}>Account</NavLink> */}
+            <NavLink href={'/SignIn'}>Account</NavLink>
             <NavLink href={'/cart'}>Cart ({cartProducts.length})</NavLink>
           </StyledNav>
           <NavButton onClick={() => setMobileNavActive(prev => !prev)}>

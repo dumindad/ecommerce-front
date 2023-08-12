@@ -4,9 +4,12 @@ import CartIcon from "@/components/icons/CartIcon";
 import Link from "next/link";
 import {useContext} from "react";
 import {CartContext} from "@/components/CartContext";
+import Image from "next/image";
 
 const ProductWrapper = styled.div`
   
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const WhiteBox = styled(Link)`
@@ -18,10 +21,10 @@ const WhiteBox = styled(Link)`
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  img{
+  /* img{
     max-width: 100%;
     max-height: 80px;
-  }
+  } */
 `;
 
 const Title = styled(Link)`
@@ -30,16 +33,18 @@ const Title = styled(Link)`
   color:inherit;
   text-decoration:none;
   margin:0;
+  
 `;
 
 const ProductInfoBox = styled.div`
   margin-top: 5px;
+  display: block;
 `;
 
 const PriceRow = styled.div`
   display: block;
   @media screen and (min-width: 768px) {
-    display: flex;
+    /* display: flex; */
     gap: 5px;
   }
   align-items: center;
@@ -51,6 +56,9 @@ const Price = styled.div`
   font-size: 1rem;
   font-weight:400;
   text-align: right;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  /* color: ; */
   @media screen and (min-width: 768px) {
     font-size: 1.2rem;
     font-weight:600;
@@ -60,16 +68,17 @@ const Price = styled.div`
 
 export default function ProductBox({_id,title,description,price,images}) {
   const {addProduct} = useContext(CartContext);
-  const url = '/product/'+_id;
+  const url2 = '/product/'+_id;
   return (
     <ProductWrapper>
-      <WhiteBox href={url}>
+      <WhiteBox href={url2}>
         <div>
-          <img src={images?.[0]?.url} alt=""/>
+          {/* <img src={images?.[0]?.url} alt=""/> */}
+          <Image style={{objectFit: "contain"}} width={250} height={100} src={images?.[0]?.url} alt={title}/>
         </div>
       </WhiteBox>
       <ProductInfoBox>
-        <Title href={url}>{title}</Title>
+        <Title href={url2}>{title}</Title>
         <PriceRow>
           <Price>
             ${price}

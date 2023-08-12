@@ -32,19 +32,19 @@ const BigImageWrapper = styled.div`
 `;
 
 export default function ProductImages({images}) {
-  const [activeImage,setActiveImage] = useState(images?.[0]);
+  const [activeImage,setActiveImage] = useState(images?.[0]?.url);
   return (
     <>
       <BigImageWrapper>
         <BigImage src={activeImage} />
       </BigImageWrapper>
       <ImageButtons>
-        {images.map(image => (
+        {images?.map(image => (
           <ImageButton
             key={image}
             active={image===activeImage}
             onClick={() => setActiveImage(image)}>
-            <Image src={image} alt=""/>
+            <Image src={image?.url} alt=""/>
           </ImageButton>
         ))}
       </ImageButtons>
